@@ -1,0 +1,337 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#6d28d9">
+<meta name="description" content="حلّ لي مشكلتي: رتّب أفكارك واكتشف خطوات عملية للبدء.">
+<title>حلّ لي مشكلتي | كل مشكلة لها بداية حلّ</title>
+
+<style>
+:root {
+  --purple: #6d28d9;
+  --pink: #ec4899;
+  --blue: #2563eb;
+  --ink: #24213b;
+  --muted: #706d83;
+  --line: #e9e3f5;
+  --bg: #f8f6ff;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--ink);
+  background: linear-gradient(180deg,#f0e8ff,#fbfaff 380px,#fff);
+  line-height: 1.8;
+}
+button,input,textarea,select { font: inherit; }
+button { cursor: pointer; }
+.container { width: min(1050px,94%); margin: auto; }
+header {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:12px; padding:16px 0;
+}
+.brand { display:flex; align-items:center; gap:10px; font-weight:bold; }
+.logo {
+  display:grid; place-items:center; width:46px; height:46px;
+  border-radius:15px; color:#fff; font-size:25px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+}
+.tag { font-size:12px; background:#fff; border:1px solid var(--line);
+  padding:6px 11px; border-radius:30px; }
+.hero { text-align:center; padding:35px 10px 40px; }
+.eyebrow { color:var(--purple); font-weight:bold; }
+h1 { font-size:clamp(34px,6vw,55px); line-height:1.35; margin:12px 0; }
+.gradient {
+  color:var(--purple);
+  background:linear-gradient(90deg,var(--purple),var(--pink),var(--blue));
+  background-clip:text; -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.hero p { max-width:650px; margin:10px auto 22px; color:var(--muted); }
+.card {
+  background:#fff; border:1px solid var(--line); border-radius:22px;
+  padding:clamp(17px,4vw,28px); margin:18px 0;
+  box-shadow:0 12px 35px #39216d0a;
+}
+h2 { font-size:21px; margin:0 0 5px; }
+.subtitle { color:var(--muted); font-size:13px; margin:0 0 20px; }
+.categories { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.category {
+  background:#fff; color:var(--ink); border:1px solid var(--line);
+  border-radius:15px; padding:12px 5px; text-align:center;
+}
+.category span { display:block; font-size:27px; }
+.category strong { font-size:12px; }
+.category.active { border:2px solid var(--purple); background:#f4efff; color:var(--purple); }
+label { display:block; font-weight:bold; font-size:14px; margin:15px 0 7px; }
+textarea,input,select {
+  width:100%; padding:12px; border:1px solid #ddd7eb; border-radius:12px;
+  background:#fff; color:var(--ink); outline:none;
+}
+textarea { min-height:120px; resize:vertical; }
+textarea:focus,input:focus,select:focus {
+  border-color:var(--purple); box-shadow:0 0 0 3px #6d28d915;
+}
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:15px; }
+.btn {
+  border:0; border-radius:12px; padding:12px 18px; font-weight:bold;
+}
+.primary { color:white; background:linear-gradient(110deg,var(--purple),var(--pink)); }
+.secondary { color:var(--purple); background:#f1ebff; border:1px solid #e4d9ff; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.hint { color:var(--muted); font-size:12px; }
+.result { display:none; }
+.result.show { display:block; }
+.result-banner {
+  background:linear-gradient(110deg,#f0e9ff,#fff0f7);
+  padding:18px; border-radius:16px; margin-bottom:18px;
+}
+.result-banner h3 { margin:0 0 5px; }
+.result-banner p { margin:0; }
+.result-block { border-bottom:1px solid var(--line); padding:15px 0; }
+.result-block:last-of-type { border-bottom:0; }
+.result-block h3 { font-size:17px; margin:0 0 8px; }
+.steps { padding:0; list-style:none; margin:0; }
+.steps li { display:flex; align-items:flex-start; gap:10px; padding:7px 0; }
+.num {
+  display:grid; place-items:center; flex-shrink:0; width:28px; height:28px;
+  border-radius:9px; background:#eee7ff; color:var(--purple); font-weight:bold;
+}
+.question { background:#eff6ff; border-radius:14px; padding:15px; margin-top:16px; }
+.notice { background:#fff8e7; padding:13px; border-radius:12px; font-size:12px; margin-top:17px; }
+#status { color:var(--purple); font-size:13px; margin-top:10px; }
+footer { text-align:center; padding:28px 0; color:var(--muted); font-size:12px; }
+@media(max-width:600px) {
+  .container { width:92%; }
+  .grid2 { grid-template-columns:1fr; gap:0; }
+  .categories { gap:7px; }
+  .category { padding:10px 3px; }
+  .category strong { font-size:11px; }
+  .hero { padding-top:25px; }
+}
+</style>
+</head>
+
+<body>
+<header class="container">
+  <div class="brand"><div class="logo">💡</div><span>حلّ لي مشكلتي</span></div>
+  <span class="tag">الإصدار التجريبي 1.0</span>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">✨ فكّر بهدوء • ابدأ بخطوة</div>
+    <h1>كل مشكلة لها<br><span class="gradient">بداية حلّ</span></h1>
+    <p>
+      احكِ لنا عن المشكلة التي تشغلك. رتّب أفكارك، وحدّد هدفك،
+      واكتشف خطوات عملية تساعدك على البدء.
+    </p>
+    <button class="btn primary" id="startBtn">ابدأ الآن ←</button>
+  </section>
+
+  <section class="card">
+    <h2>١. اختر مجال المشكلة</h2>
+    <p class="subtitle">اختَر المجال الأقرب لمشكلتك.</p>
+    <div class="categories" id="categories">
+      <button class="category active" data-cat="general" aria-pressed="true"><span>🧩</span><strong>مشكلة عامة</strong></button>
+      <button class="category" data-cat="work" aria-pressed="false"><span>💼</span><strong>العمل والدخل</strong></button>
+      <button class="category" data-cat="education" aria-pressed="false"><span>📚</span><strong>التعليم</strong></button>
+      <button class="category" data-cat="family" aria-pressed="false"><span>🏡</span><strong>الأسرة والعلاقات</strong></button>
+      <button class="category" data-cat="innovation" aria-pressed="false"><span>🚀</span><strong>الأفكار والمشروعات</strong></button>
+      <button class="category" data-cat="daily" aria-pressed="false"><span>⏰</span><strong>الوقت والأولويات</strong></button>
+      <button class="category" data-cat="wellbeing" aria-pressed="false"><span>🌿</span><strong>الراحة والضغوط</strong></button>
+      <button class="category" data-cat="community" aria-pressed="false"><span>🤝</span><strong>خدمة المجتمع</strong></button>
+      <button class="category" data-cat="faith" aria-pressed="false"><span>✨</span><strong>القيم والمعنى</strong></button>
+    </div>
+  </section>
+
+  <section class="card" id="inputCard">
+    <h2>٢. احكِ لنا عن مشكلتك</h2>
+    <p class="subtitle">اكتب بطريقتك. لا تحتاج إلى صياغة مثالية.</p>
+
+    <form id="problemForm">
+      <label for="problem">ما المشكلة التي تريد حلّها؟ *</label>
+      <textarea id="problem" required maxlength="3000"
+        placeholder="مثال: عندي أفكار مشروعات كثيرة، لكنني مشتت ولا أعرف أيها أبدأ به..."></textarea>
+
+      <div class="grid2">
+        <div>
+          <label for="goal">ما النتيجة التي تتمناها؟</label>
+          <input id="goal" maxlength="500" placeholder="مثال: أبدأ مشروعًا صغيرًا">
+        </div>
+        <div>
+          <label for="time">متى تريد التقدم؟</label>
+          <select id="time">
+            <option>اليوم</option>
+            <option selected>خلال أسبوع</option>
+            <option>خلال شهر</option>
+            <option>على المدى الطويل</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="limits">ما الذي يعيقك؟ (اختياري)</label>
+      <input id="limits" maxlength="500" placeholder="مثال: الوقت أو الميزانية أو الخبرة">
+
+      <div class="actions">
+        <button class="btn primary" type="submit">✨ اقترح خطوات للحل</button>
+        <button class="btn secondary" id="clearBtn" type="button">مسح البيانات</button>
+      </div>
+      <p class="hint">لا تكتب كلمات المرور أو بياناتك البنكية أو معلومات شخصية حساسة.</p>
+      <p id="status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+
+  <section class="card result" id="result" aria-live="polite">
+    <h2>٣. خريطة بداية الحل</h2>
+    <p class="subtitle">خطة مبدئية يمكنك تعديلها حسب ظروفك.</p>
+
+    <div class="result-banner">
+      <h3 id="resultTitle">خطوة صغيرة تصنع فرقًا</h3>
+      <p id="summary"></p>
+    </div>
+
+    <div class="result-block">
+      <h3>🔎 فهم المشكلة</h3>
+      <p id="problemSummary"></p>
+    </div>
+
+    <div class="result-block">
+      <h3>🛠️ خطوات عملية مقترحة</h3>
+      <ol class="steps" id="steps"></ol>
+    </div>
+
+    <div class="result-block">
+      <h3>🎯 خطوتك التالية</h3>
+      <p id="nextStep"></p>
+    </div>
+
+    <div class="question">
+      <strong>💭 سؤال يساعد على تحسين الحل</strong>
+      <p id="followup"></p>
+    </div>
+
+    <div class="notice">
+      <strong>توضيح:</strong> هذه نسخة تجريبية تستخدم قواعد محلية داخل الصفحة،
+      وليست متصلة حاليًا بنموذج ذكاء اصطناعي خارجي. راجع الاقتراحات قبل اتخاذ
+      قرارات مالية أو صحية أو قانونية مهمة.
+    </div>
+
+    <div class="actions">
+      <button class="btn primary" id="copyBtn" type="button">📋 نسخ خطة الحل</button>
+      <button class="btn secondary" id="editBtn" type="button">✏️ تعديل المشكلة</button>
+      <button class="btn secondary" id="newBtn" type="button">↻ مشكلة جديدة</button>
+    </div>
+  </section>
+</main>
+
+<footer class="container">
+  <strong>حلّ لي مشكلتي © 2026</strong><br>
+  من الحيرة إلى الفهم، ومن الفهم إلى خطوة عملية.
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+let selectedCategory = "general";
+let latestPlan = "";
+
+const plans = {
+  general: {
+    title: "لنقسّم المشكلة إلى أجزاء أصغر",
+    steps: [
+      "اكتب ما حدث بالفعل، وافصله عن توقعاتك ومخاوفك.",
+      "حدّد السبب الأهم الذي تستطيع التأثير فيه.",
+      "اكتب ثلاثة حلول محتملة وقارن مزاياها ومخاطرها.",
+      "اختر خطوة صغيرة وآمنة تستطيع تنفيذها خلال يوم.",
+      "راجع النتيجة وعدّل خطتك بناءً على ما تعلمته."
+    ],
+    question: "ما الجزء الأكثر إزعاجًا في المشكلة؟ وما الشيء الذي تستطيع تغييره بنفسك؟"
+  },
+  work: {
+    title: "حوّل مشكلة العمل إلى خطة قابلة للتجربة",
+    steps: [
+      "حدّد هدفك: وظيفة أو دخل إضافي أو تطوير مهارة أو مشروع.",
+      "اكتب الموارد المتاحة: الوقت والمهارات والميزانية.",
+      "اختر فرصة واحدة بدل توزيع جهدك على أفكار كثيرة.",
+      "ابدأ بتجربة صغيرة منخفضة التكلفة وحدّد معيار نجاحها.",
+      "راجع النتائج قبل إنفاق مال إضافي أو اتخاذ قرار كبير."
+    ],
+    question: "ما المهارة التي تمتلكها بالفعل، وما أقل تجربة تستطيع تنفيذها؟"
+  },
+  education: {
+    title: "اجعل التعلّم أسهل وأكثر انتظامًا",
+    steps: [
+      "حدّد الموضوع الذي تريد تعلمه والنتيجة المطلوبة.",
+      "قسّم الموضوع إلى أجزاء صغيرة مرتبة.",
+      "خصص وقتًا يوميًا واقعيًا للتعلم والتطبيق.",
+      "اختبر فهمك بمثال أو تمرين عملي.",
+      "راجع تقدمك أسبوعيًا وحدّد ما يحتاج إلى تحسين."
+    ],
+    question: "ما المهارة التي تتعلمها الآن، وكم دقيقة تستطيع تخصيصها يوميًا؟"
+  },
+  family: {
+    title: "ابدأ بالفهم والتواصل الهادئ",
+    steps: [
+      "حدّد الموقف الذي يسبب الخلاف دون تعميم أو تجريح.",
+      "ميّز بين ما حدث فعلًا وبين تفسيرك لنية الطرف الآخر.",
+      "اختر وقتًا مناسبًا للتحدث إذا كان ذلك آمنًا.",
+      "استمع إلى وجهة النظر الأخرى وحدّد نقطة واحدة قابلة للتحسين.",
+      "اتفقوا على خطوة واضحة وراجعوا أثرها لاحقًا."
+    ],
+    question: "ما التغيير الذي تتمناه؟ وهل الحوار مع الطرف الآخر آمن وممكن؟"
+  },
+  innovation: {
+    title: "اختبر فكرتك قبل استثمار الكثير فيها",
+    steps: [
+      "حدّد المشكلة التي تحلها فكرتك، ومن يعاني منها.",
+      "استمع إلى أشخاص يواجهون المشكلة فعلًا.",
+      "أنشئ أبسط نموذج يوضح فكرتك.",
+      "اطلب من مستخدمين محتملين تجربته وسجّل ملاحظاتهم.",
+      "طوّر النموذج بناءً على النتائج قبل التوسع."
+    ],
+    question: "من أول شخص يمكنه تجربة فكرتك، وما أبسط نموذج تستطيع تقديمه؟"
+  },
+  daily: {
+    title: "استعد السيطرة على وقتك وأولوياتك",
+    steps: [
+      "اكتب المهام التي تشغل بالك في قائمة واحدة.",
+      "اختر أهم ثلاث مهام حسب الأثر والموعد النهائي.",
+      "حوّل المهمة الكبيرة إلى خطوة تستغرق 15 إلى 30 دقيقة.",
+      "خصّص وقتًا للعمل وقلّل المشتتات.",
+      "في نهاية اليوم، راجع ما أنجزته وحدّد أول مهمة للغد."
+    ],
+    question: "ما المهمة الواحدة التي سيجعل إنجازها يومك أفضل بوضوح؟"
+  },
+  wellbeing: {
+    title: "ابدأ بخطوة صغيرة تدعم راحتك",
+    steps: [
+      "توقّف قليلًا وسمِّ ما تشعر به دون لوم نفسك.",
+      "ميّز بين ما تستطيع التأثير فيه وما لا تستطيع.",
+      "اختر خطوة بسيطة تساعدك على الراحة وتنظيم يومك.",
+      "تواصل مع شخص موثوق إذا كنت تحتاج إلى دعم.",
+      "إذا استمر الضيق أو أثّر في حياتك، فاطلب مساعدة مختص."
+    ],
+    question: "ما أكثر شيء يستنزف طاقتك، وما نوع الدعم الذي قد يفيدك؟"
+  },
+  community: {
+    title: "ابدأ بحل مجتمعي صغير قابل للقياس",
+    steps: [
+      "حدّد الفئة المتأثرة بالمشكلة واستمع إلى أصحاب التجربة.",
+      "اجمع معلومات موثوقة عن أسباب المشكلة.",
+      "اختر حلًا أوليًا واقعيًا يناسب الموارد المتاحة.",
+      "جرّب الحل على نطاق صغير بالتعاون مع المعنيين.",
+      "قِس الأثر وتعلّم من النتائج قبل التوسع."
+    ],
+    question: "من الأكثر تأثرًا بالمشكلة، ومن يمكنه التعاون معك؟"
+  },
+  faith: {
+    title: "وازن بين قيمك وخطواتك العملية",
+    steps: [
+      "وضّح القيمة أو المبدأ الذي تريد أن تسترشد به.",
+      "افصل بين الأمور التي تستطيع تغييرها والأمور الخارجة عن سيط
