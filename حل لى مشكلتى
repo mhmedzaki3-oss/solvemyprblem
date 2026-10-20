@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#6d28d9">
+<meta name="description" content="حلّ لي مشكلتي: رتّب أفكارك واكتشف خطوات عملية لحل مشكلاتك.">
+<title>حلّ لي مشكلتي | 2026</title>
+
+<style>
+:root {
+  --purple:#6d28d9;
+  --pink:#ec4899;
+  --blue:#2563eb;
+  --ink:#24213a;
+  --muted:#716c84;
+  --line:#e9e3f5;
+  --bg:#f8f6ff;
+  --white:#fff;
+  --green:#168568;
+}
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  margin:0;
+  font-family:Tahoma,Arial,sans-serif;
+  color:var(--ink);
+  background:linear-gradient(180deg,#f0e9ff 0,#faf9ff 340px,#fff 100%);
+  line-height:1.8;
+}
+button,input,textarea,select { font:inherit; }
+button { cursor:pointer; }
+.container { width:min(1050px,93%); margin:auto; }
+header { padding:16px 0; }
+.nav {
+  display:flex; justify-content:space-between;
+  align-items:center; gap:12px;
+}
+.brand { display:flex; align-items:center; gap:10px; font-weight:bold; }
+.logo {
+  display:grid; place-items:center; width:45px; height:45px;
+  border-radius:15px; color:white; font-size:25px;
+  background:linear-gradient(135deg,var(--purple),var(--pink));
+}
+.tag {
+  border:1px solid var(--line); background:white;
+  padding:5px 12px; border-radius:30px; font-size:12px;
+}
+.hero { text-align:center; padding:45px 12px 35px; }
+.eyebrow { color:var(--purple); font-weight:bold; font-size:14px; }
+h1 { font-size:clamp(34px,6vw,54px); line-height:1.35; margin:12px 0; }
+.gradient {
+  background:linear-gradient(90deg,var(--purple),var(--pink),var(--blue));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p { max-width:680px; margin:12px auto; color:var(--muted); }
+.primary,.secondary {
+  border:0; border-radius:13px; padding:12px 18px; font-weight:bold;
+}
+.primary {
+  color:white; background:linear-gradient(110deg,var(--purple),var(--pink));
+  box-shadow:0 8px 22px #6d28d922;
+}
+.secondary { color:var(--purple); background:#f0eaff; }
+.primary:hover,.secondary:hover { filter:brightness(.96); }
+.card {
+  background:var(--white); border:1px solid var(--line);
+  border-radius:22px; padding:clamp(17px,3vw,28px);
+  margin:18px 0; box-shadow:0 10px 35px #30205d09;
+}
+h2 { font-size:22px; margin:0 0 5px; }
+.muted { color:var(--muted); font-size:14px; margin:0 0 18px; }
+.categories {
+  display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px;
+}
+.category {
+  background:white; border:1px solid var(--line); border-radius:15px;
+  padding:12px 5px; color:var(--ink); transition:.2s;
+}
+.category span { display:block; font-size:26px; }
+.category strong { font-size:12px; }
+.category.active {
+  border:2px solid var(--purple); background:#f3edff;
+  color:var(--purple);
+}
+label { display:block; font-size:14px; font-weight:bold; margin:15px 0 7px; }
+input,textarea,select {
+  display:block; width:100%; padding:12px 13px;
+  border:1px solid #ddd6ed; border-radius:12px;
+  background:#fff; color:var(--ink); outline:none;
+}
+textarea { min-height:125px; resize:vertical; }
+input:focus,textarea:focus,select:focus {
+  border-color:var(--purple); box-shadow:0 0 0 3px #6d28d915;
+}
+.grid2 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:18px; }
+.full { width:100%; margin-top:10px; }
+.note { color:var(--muted); font-size:12px; }
+.result { display:none; }
+.result.show { display:block; }
+.banner {
+  background:linear-gradient(115deg,#eee7ff,#fff0f7);
+  padding:20px; border-radius:17px; margin:16px 0;
+}
+.banner h3 { margin:0 0 5px; font-size:22px; }
+.banner p { margin:0; }
+.step { display:flex; gap:12px; padding:12px 0; border-bottom:1px solid var(--line); }
+.step:last-child { border-bottom:0; }
+.number {
+  flex:0 0 32px; height:32px; display:grid; place-items:center;
+  border-radius:10px; background:#eee7ff; color:var(--purple); font-weight:bold;
+}
+.step p { margin:0; }
+.question { margin-top:18px; background:#eef6ff; border-radius:15px; padding:16px; }
+.warning {
+  margin-top:18px; padding:14px; border-radius:13px;
+  background:#fff9e7; border:1px solid #f4e4b3; font-size:12px;
+}
+.feedback { margin-top:20px; padding:15px; background:#f7f5ff; border-radius:15px; }
+.feedback button {
+  border:1px solid var(--line); border-radius:10px;
+  padding:8px 11px; margin:5px 3px 0 0; background:white;
+}
+.info-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:13px; }
+.info {
+  background:white; border:1px solid var(--line);
+  border-radius:17px; padding:18px;
+}
+.info span { font-size:27px; }
+.info h3 { margin:7px 0; font-size:17px; }
+.info p { color:var(--muted); font-size:13px; margin:0; }
+#status { color:var(--purple); font-size:13px; margin-top:10px; }
+footer { text-align:center; padding:25px 10px; color:var(--muted); font-size:12px; }
+@media(max-width:600px) {
+  .hero { padding-top:25px; }
+  .grid2,.info-grid { grid-template-columns:1fr; gap:0; }
+  .categories { gap:7px; }
+  .category { padding:9px 3px; }
+  .category span { font-size:23px; }
+  .category strong { font-size:11px; }
+  .card { border-radius:18px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  html { scroll-behavior:auto; }
+  * { transition:none!important; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <div class="brand">
+      <div class="logo">💡</div>
+      <span>حلّ لي مشكلتي</span>
+    </div>
+    <span class="tag">الإصدار التجريبي 1.0</span>
+  </div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <div class="eyebrow">✨ فكرة واضحة • خطوة عملية • تقدم مستمر</div>
+    <h1>كل مشكلة لها<br><span class="gradient">بداية حلّ</span></h1>
+    <p>
+      احكِ لنا عن المشكلة التي تشغلك. رتّب أفكارك،
+      حدّد هدفك، واكتشف خطوات أولية تساعدك على البدء.
+    </p>
+    <button class="primary" id="startBtn">ابدأ الآن ↓</button>
+  </section>
+
+  <section class="card">
+    <h2>١. اختر مجال المشكلة</h2>
+    <p class="muted">اختَر المجال الأقرب لمشكلتك.</p>
+
+    <div class="categories" id="categories">
+      <button class="category active" data-key="general" aria-pressed="true" type="button"><span>🧩</span><strong>مشكلة عامة</strong></button>
+      <button class="category" data-key="work" aria-pressed="false" type="button"><span>💼</span><strong>العمل والدخل</strong></button>
+      <button class="category" data-key="education" aria-pressed="false" type="button"><span>📚</span><strong>التعليم والتعلّم</strong></button>
+      <button class="category" data-key="family" aria-pressed="false" type="button"><span>🏡</span><strong>الأسرة والعلاقات</strong></button>
+      <button class="category" data-key="innovation" aria-pressed="false" type="button"><span>🚀</span><strong>فكرة أو مشروع</strong></button>
+      <button class="category" data-key="daily" aria-pressed="false" type="button"><span>⏰</span><strong>الوقت والأولويات</strong></button>
+      <button class="category" data-key="wellbeing" aria-pressed="false" type="button"><span>🌿</span><strong>الراحة والضغوط</strong></button>
+      <button class="category" data-key="community" aria-pressed="false" type="button"><span>🤝</span><strong>خدمة المجتمع</strong></button>
+      <button class="category" data-key="faith" aria-pressed="false" type="button"><span>✨</span><strong>القيم والمعنى</strong></button>
+    </div>
+  </section>
+
+  <section class="card" id="formCard">
+    <h2>٢. احكِ لنا عن مشكلتك</h2>
+    <p class="muted">اكتب ببساطة. لا تحتاج إلى صياغة مثالية.</p>
+
+    <form id="problemForm">
+      <label for="problem">ما المشكلة التي تريد حلّها؟ *</label>
+      <textarea id="problem" maxlength="3000" required placeholder="اشرح المشكلة، وما الذي حدث، وما الذي تريد تغييره..."></textarea>
+
+      <div class="grid2">
+        <div>
+          <label for="goal">ما النتيجة التي تتمناها؟</label>
+          <input id="goal" maxlength="500" placeholder="مثال: أبدأ مشروعي بأقل تكلفة">
+        </div>
+        <div>
+          <label for="deadline">متى تريد التقدم؟</label>
+          <select id="deadline">
+            <option>اليوم</option>
+            <option selected>خلال أسبوع</option>
+            <option>خلال شهر</option>
+            <option>على المدى الطويل</option>
+          </select>
+        </div>
+      </div>
+
+      <label for="constraints">ما الذي يصعّب الحل؟ (اختياري)</label>
+      <input id="constraints" maxlength="500" placeholder="مثال: الميزانية، الوقت، الخبرة أو الموارد">
+
+      <button class="primary full" type="submit">✨ أنشئ خطة الحل المبدئية</button>
+      <button class="secondary full" type="button" id="exampleBtn">جرّب مثالًا جاهزًا</button>
+      <button class="secondary full" type="button" id="clearBtn">مسح المدخلات</button>
+      <p class="note">لا تدخل كلمات مرور أو بيانات بنكية أو معلومات شخصية حساسة.</p>
+      <div id="status" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section class="card result" id="result" aria-live="polite">
+    <h2>٣. خريطة بداية الحل</h2>
+    <p class="muted">راجع المقترحات وعدّلها لتناسب ظروفك.</p>
+
+    <div class="banner">
+      <h3 id="resultTitle">لنبدأ بخطوة صغيرة</h3>
+      <p id="summary"></p>
+    </div>
+
+    <h3>خطوات عملية مقترحة</h3>
+    <div id="steps"></div>
+
+    <div class="question">
+      <strong>💭 سؤال يساعد على تحسين الحل</strong>
+      <p id="followup"></p>
+    </div>
+
+    <div class="question">
+      <strong>🎯 خطوتك التالية</strong>
+      <p id="nextStep"></p>
+    </div>
+
+    <div class="warning">
+      <strong>تنبيه:</strong>
+      هذا نموذج تجريبي يستخدم قواعد ثابتة داخل الصفحة،
+      وليس ذكاءً اصطناعيًا متصلًا بخدمة خارجية.
+      المقترحات عامة وليست بديلًا عن المشورة المتخصصة عند الحاجة.
+    </div>
+
+    <div class="actions">
+      <button class="primary" type="button" id="copyBtn">📋 نسخ خطة الحل</button>
+      <button class="secondary" type="button" id="editBtn">✏️ تعديل المشكلة</button>
+      <button class="secondary" type="button" id="newBtn">↻ مشكلة جديدة</button>
+    </div>
+
+    <div class="feedback">
+      <strong>هل كانت الخطة مفيدة؟</strong><br>
+      <button type="button" data-feedback="مفيدة">👍 نعم</button>
+      <button type="button" data-feedback="مفيدة جزئيًا">🤔 جزئيًا</button>
+      <button type="button" data-feedback="غير كافية">👎 لا</button>
+      <p id="feedbackMessage" class="note" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>كيف نساعدك على التقدم؟</h2>
+    <p class="muted">من الحيرة إلى العمل بخطوات مفهومة.</p>
+    <div class="info-grid">
+      <div class="info">
+        <span>🔎</span>
+        <h3>افهم المشكلة</h3>
+        <p>حدد ما يحدث فعلًا، وما النتيجة التي تريدها.</p>
+      </div>
+      <div class="info">
+        <span>🧭</span>
+        <h3>اختر خطوة</h3>
+        <p>ابدأ بإجراء صغير يمكن تنفيذه وقياس نتيجته.</p>
+      </div>
+      <div class="info">
+        <span>🔄</span>
+        <h3>راجع وتعلّم</h3>
+        <p>استفد من النتيجة وطوّر خطتك تدريجيًا.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>حلّ لي مشكلتي</strong> © 2026<br>
+  نموذج أولي تجريبي قابل للتطوير.
+</footer>
+
+<script>
+"use strict";
+
+const $ = id => document.getElementById(id);
+let selectedCategory = "general";
+let lastPlan = "";
+
+const plans = {
+  general: {
+    title:"قسّم المشكلة إلى أجزاء أصغر",
+    steps:[
+      "اكتب الحقائق التي تعرفها، وافصلها عن المخاوف والتوقعات.",
+      "حدّد الجزء الأكثر تأثيرًا من المشكلة.",
+      "اكتب ثلاثة حلول محتملة وقارن بينها.",
+      "اختر خطوة صغيرة وآمنة يمكنك تنفيذها خلال 24 ساعة.",
+      "راجع النتيجة وعدّل خطتك بناءً على ما تعلمته."
+    ],
+    question:"ما أكثر جزء يزعجك الآن، وما الشيء الذي تستطيع تغييره بنفسك؟"
+  },
+  work: {
+    title:"حوّل تحدي العمل إلى خطة قابلة للتنفيذ",
+    steps:[
+      "حدّد هدفك: وظيفة، دخل إضافي، مهارة جديدة، أم مشروع.",
+      "اكتب الموارد المتاحة لديك من وقت ومهارات وميزانية.",
+      "اختر أولوية واحدة بدل توزيع الجهد على أهداف كثيرة.",
+      "نفّذ تجربة صغيرة منخفضة التكلفة وحدّد طريقة قياسها.",
+      "راجع النتائج قبل اتخاذ قرار مالي أو مهني كبير."
+    ],
+    question:"ما المهارة أو المورد المتاح لديك الآن، وما أصغر تجربة يمكنك البدء بها؟"
+  },
+  education: {
+    title:"اجعل التعلّم أكثر تنظيمًا",
+    steps:[
+      "حدّد ما تريد تعلمه ولماذا تحتاج إليه.",
+      "قسّم الموضوع إلى أجزاء صغيرة مرتبة.",
+      "خصص وقتًا واقعيًا للتعلم والتطبيق.",
+      "اختبر فهمك بمثال عملي أو تمرين.",
+      "راجع تقدمك أسبوعيًا وحدد نقطة التحسين التالية."
+    ],
+    question:"ما الموضوع الذي تتعلمه، وكم دقيقة تستطيع تخصيصها يوميًا؟"
+  },
+  family: {
+    title:"ابدأ بالفهم والتواصل الهادئ",
+    steps:[
+      "صف الموقف المحدد الذي يسبب الخلاف دون تعميم.",
+      "فرّق بين ما حدث وبين تفسيرك لنية الطرف الآخر.",
+      "اختر وقتًا مناسبًا وآمنًا للحوار.",
+      "عبّر عن احتياجك بوضوح واستمع للطرف الآخر.",
+      "اتفقوا على خطوة صغيرة قابلة للتجربة."
+    ],
+    question:"ما التغيير الصغير الذي تتمنى حدوثه، وهل الحوار آمن في هذه العلاقة؟"
+  },
+  innovation: {
+    title:"اختبر فكرتك قبل إنفاق الكثير",
+    steps:[
+      "اكتب المشكلة التي تحلها فكرتك ومن يعاني منها.",
+      "تحدث مع أشخاص من الفئة المستهدفة لفهم احتياجاتهم.",
+      "أنشئ أبسط نموذج يوضح الفكرة.",
+      "اطلب تجربة النموذج واجمع الملاحظات.",
+      "حسّن الفكرة بناءً على الأدلة قبل التوسع."
+    ],
+    question:"من أول شخص يمكنه تجربة فكرتك، وما أبسط نموذج تستطيع تقديمه؟"
+  },
+  daily: {
+    title:"استعد السيطرة على أولوياتك",
+    steps:[
+      "اكتب المهام التي تشغل بالك في قائمة واحدة.",
+      "اختر أهم ثلاث مهام وفق الأثر والموعد النهائي.",
+      "قسّم أكبر مهمة إلى خطوات قصيرة.",
+      "حدد وقتًا للعمل وقلل المشتتات.",
+      "راجع إنجازات اليوم وحدد أول مهمة للغد."
+    ],
+    question:"ما المهمة الواحدة التي سيجعل إنجازها يومك أفضل؟"
+  },
+  wellbeing: {
+    title:"ابدأ بخطوة تدعم راحتك",
+    steps:[
+      "توقف قليلًا وسمّ الشعور أو الضغط الذي تواجهه.",
+      "فرّق بين الأمور التي تستطيع تغييرها وتلك الخارجة عن سيطرتك.",
+      "اختر خطوة صغيرة تناسب طاقتك وظروفك.",
+      "تحدث مع شخص موثوق إذا احتجت إلى دعم.",
+      "إذا استمر الضيق أو أثر في حياتك، فاطلب مساعدة مختص مناسب."
+    ],
+    question:"ما أكثر شيء يستنزف طاقتك حاليًا، وما نوع الدعم الذي قد يفيدك؟"
+  },
+  community: {
+    title:"ابدأ بحل مجتمعي صغير قابل للقياس",
+    steps:[
+      "حدد المشكلة والفئة الأكثر تأثرًا بها.",
+      "استمع إلى أصحاب التجربة واجمع معلومات موثوقة.",
+      "اختر حلًا أوليًا واقعيًا ضمن الموارد المتاحة.",
+      "جرّب الحل على نطاق صغير بالتعاون مع المعنيين.",
+      "قِس الأثر وتعلّم قبل التفكير في التوسع."
+    ],
+    question:"من الأكثر تأثرًا بالمشكلة، ومن يمكنه التعاون معك؟"
+  },
+  faith: {
+    title:"وازن بين القيم والعمل والتفكير",
+    steps:[
+      "حدد القيم التي تريد أن توجه قرارك.",
+      "اكتب الخيارات المتاحة وما يترتب على كل منها.",
+      "استعن بالمعلومات الموثوقة وبأهل الخبرة عند الحاجة.",
+      "اختر خطوة عملية تتفق مع قيمك وظروفك.",
+      "راجع النتيجة وتعلم منها دون القسوة على نفسك."
+    ],
+    question:"ما القيمة الأهم التي تريد الحفاظ عليها أثناء حل المشكلة؟"
+  }
+};
+
+$("categories").addEventListener("click", event => {
+  const button = event.target.closest("[data-key]");
+  if (!button) return;
+
+  selectedCategory = button.dataset.key;
+
+  document.querySelectorAll(".category").forEach(item => {
+    const active = item === button;
+    item.classList.toggle("active", active);
+    item.setAttribute("aria-pressed", String(active));
+  });
+});
+
+$("startBtn").addEventListener("click", () => {
+  $("formCard").scrollIntoView({behavior:"smooth", block:"start"});
+  setTimeout(() => $("problem").focus({preventScroll:true}), 250);
+});
+
+$("exampleBtn").addEventListener("click", () => {
+  selectedCategory = "innovation";
+  document.querySelectorAll(".category").forEach(item => {
+    const active = item.dataset.key === selectedCategory;
+    item.classList.toggle("active", active);
+    item.setAttribute("aria-pressed", String(active));
+  });
+
+  $("problem").value =
+    "لدي فكرة تطبيق يساعد الناس على حل مشكلاتهم، لكنني لا أعرف كيف أبدأ أو أختبر الفكرة بميزانية محدودة.";
+  $("goal").value = "إنشاء نموذج أولي وتجربته مع مستخدمين حقيقيين";
+  $("deadline").value = "خلال أسبوع";
+  $("constraints").value = "ميزانية محدودة وخبرة برمجية محدودة";
+  $("status").textContent = "تم تحميل المثال. اضغط على إنشاء خطة الحل.";
+  $("problem").focus();
+});
+
+$("clearBtn").addEventListener("click", () => {
+  $("problemForm").reset();
+  $("status").textContent = "";
+  $("feedbackMessage").textContent = "";
+  $("result").classList.remove("show");
+  $("problem").focus();
+});
+
+$("problemForm").addEventListener("submit", event => {
+  event.preventDefault();
+
+  const problem = $("problem").value.trim();
+  const goal = $("goal").value.trim();
+  const deadline = $("deadline").value;
+  const constraints = $("constraints").value.trim();
+
+  if (!problem) {
+    $("status").textContent = "من فضلك اكتب المشكلة أولًا.";
+    $("problem").focus();
+    return;
+  }
+
+  const plan = plans[selectedCategory];
+  const intro = goal
+    ? "هدفك المعلن: " + goal
+    : "ابدأ بتوضيح النتيجة التي تريد الوصول إليها.";
+
+  $("resultTitle").textContent = plan.title;
+  $("summary").textContent =
+    "المشكلة التي أدخلتها: " + problem + " " + intro;
+
+  const steps = $("steps");
+  steps.replaceChildren();
+
+  const personalized = [...plan.steps];
+
+  if (constraints) {
+    personalized.push(
+      "خذ القيد الذي ذكرته في الحسبان: " + constraints +
+      ". عدّل الخطة حتى لا تتجاوز مواردك الحالية."
+    );
+  }
+
+  personalized.push(
+    "ضع موعد مراجعة خلال الفترة التي اخترتها: " + deadline + "."
+  );
+
+  personalized.forEach((text, index) => {
+    const row = document.createElement("div");
+    row.className = "step";
+
+    const number = document.createElement("div");
+    number.className = "number";
+    number.textContent = String(index + 1);
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = text;
+
+    row.append(number, paragraph);
+    steps.appendChild(row);
+  });
+
+  $("followup").textContent = plan.question;
+  $("nextStep").textContent =
+    "خصص 15 دقيقة الآن لتحديد أول إجراء، ومن المسؤول عنه، ومتى ستنفذه.";
+
+  lastPlan =
+    "حلّ لي مشكلتي\n" +
+    "المشكلة: " + problem + "\n" +
+    "الهدف: " + (goal || "لم يحدد بعد") + "\n" +
+    "الموعد: " + deadline + "\n" +
+    "القيود: " + (constraints || "لم تذكر") + "\n\n" +
+    "الخطة: " + plan.title + "\n" +
+    personalized.map((item, i) => (i + 1) + ". " + item).join("\n") +
+    "\n\nسؤال المتابعة: " + plan.question;
+
+  $("feedbackMessage").textContent = "";
+  $("result").classList.add("show");
+  $("status").textContent = "تم إعداد الخطة المبدئية.";
+
+  $("result").scrollIntoView({behavior:"smooth", block:"start"});
+});
+
+$("copyBtn").addEventListener("click", async () => {
+  if (!lastPlan) return;
+
+  try {
+    await navigator.clipboard.writeText(lastPlan);
+    $("status").textContent = "تم نسخ الخطة. يمكنك لصقها في ملاحظاتك.";
+  } catch (error) {
+    const area = document.createElement("textarea");
+    area.value = lastPlan;
+    area.setAttribute("readonly", "");
+    area.style.position = "fixed";
+    area.style.opacity = "0";
+    document.body.appendChild(area);
+    area.select();
+
+    const copied = document.execCommand("copy");
+    area.remove();
+
+    $("status").textContent = copied
+      ? "تم نسخ الخطة."
+      : "تعذر النسخ التلقائي. يمكنك تحديد النص ونسخه يدويًا.";
+  }
+});
+
+$("editBtn").addEventListener("click", () => {
+  $("formCard").scrollIntoView({behavior:"smooth"});
+  $("problem").focus({preventScroll:true});
+});
+
+$("newBtn").addEventListener("click", () => {
+  $("problemForm").reset();
+  $("result").classList.remove("show");
+  $("status").textContent = "";
+  $("feedbackMessage").textContent = "";
+  $("problem").focus();
+  $("formCard").scrollIntoView({behavior:"smooth"});
+});
+
+document.querySelectorAll("[data-feedback]").forEach(button => {
+  button.addEventListener("click", () => {
+    $("feedbackMessage").textContent =
+      "شكرًا على رأيك: " + button.dataset.feedback +
+      ". في هذه النسخة التجريبية لا يُرسل التقييم إلى خادم.";
+  });
+});
+</script>
+</body>
+</html>
