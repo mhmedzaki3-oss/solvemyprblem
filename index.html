@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="htmlTag">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#101a35">
+  <meta name="description" content="حلّ لي مشكلتي: مساحة عربية تساعدك على ترتيب أفكارك وتحويل مشكلاتك إلى خطوات عملية.">
+  <title>حلّ لي مشكلتي | Help Me Solve My Problem</title>
+
+  <style>
+    :root {
+      --bg: #f4f7fc;
+      --surface: #ffffff;
+      --text: #17213b;
+      --muted: #66718a;
+      --navy: #101a35;
+      --blue: #67b7ff;
+      --pink: #e83e8c;
+      --border: #dfe6f1;
+      --shadow: 0 12px 35px rgba(16, 26, 53, .08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Tahoma, Arial, sans-serif;
+      line-height: 1.8;
+      transition: background .25s, color .25s;
+    }
+
+    body.dark {
+      --bg: #0c1224;
+      --surface: #151e35;
+      --text: #f1f5ff;
+      --muted: #b2bdd2;
+      --navy: #080e1d;
+      --border: #2a3650;
+      --shadow: 0 12px 35px rgba(0, 0, 0, .2);
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    button:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    select:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .topbar {
+      background: var(--navy);
+      color: white;
+      padding: 14px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .brand {
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .brand span {
+      color: var(--blue);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tool-btn {
+      border: 1px solid #43506d;
+      color: white;
+      background: #202c49;
+      border-radius: 12px;
+      padding: 7px 12px;
+    }
+
+    .tool-btn:hover {
+      background: #304060;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #101a35, #233c70);
+      color: white;
+      padding: 45px 5% 55px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      line-height: 1.4;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
+      color: #dce8ff;
+    }
+
+    .hero .accent {
+      color: #ff8bc1;
+    }
+
+    .container {
+      width: min(100% - 28px, 1050px);
+      margin: 28px auto 50px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: clamp(16px, 3vw, 28px);
+      margin-bottom: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      margin-top: 0;
+      font-size: 1.25rem;
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .field {
+      margin: 16px 0;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      font-weight: 700;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    textarea,
+    select {
+      display: block;
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 115px;
+      resize: vertical;
+    }
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(135px, 1fr));
+      gap: 10px;
+    }
+
+    .category {
+      border: 1px solid var(--border);
+      border-radius: 13px;
+      padding: 12px 8px;
+      background: var(--surface);
+      color: var(--text);
+      text-align: center;
+    }
+
+    .category.active {
+      border-color: var(--pink);
+      background: rgba(232, 62, 140, .1);
+      box-shadow: inset 0 0 0 1px var(--pink);
+    }
+
+    .primary-btn {
+      background: var(--pink);
+      color: white;
+      border: 0;
+      border-radius: 12px;
+      padding: 12px 20px;
+      font-weight: 800;
+    }
+
+    .primary-btn:hover {
+      filter: brightness(.95);
+    }
+
+    .secondary-btn {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 10px 16px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .result-card {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin: 12px 0;
+      background: var(--surface);
+    }
+
+    .result-card h3 {
+      margin-top: 0;
+    }
+
+    .notice {
+      border-inline-start: 4px solid var(--blue);
+      padding: 12px 15px;
+      background: rgba(103, 183, 255, .1);
+      border-radius: 8px;
+      color: var(--text);
+    }
+
+    .footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 20px;
+      font-size: .9rem;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 18px;
+      background: rgba(5, 10, 25, .75);
+    }
+
+    .modal-backdrop[hidden] {
+      display: none !important;
+    }
+
+    .modal {
+      width: min(100%, 500px);
+      padding: 26px;
+      border-radius: 22px;
+      background: var(--surface);
+      color: var(--text);
+      box-shadow: 0 25px 80px rgba(0, 0, 0, .3);
+      text-align: center;
+    }
+
+    .modal h2 {
+      margin-top: 0;
+    }
+
+    .volume-control {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .volume-control input {
+      flex: 1;
+      min-width: 100px;
+    }
+
+    .small {
+      font-size: .88rem;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    @media (max-width: 600px) {
+      .topbar {
+        align-items: flex-start;
+      }
+
+      .toolbar {
+        width: 100%;
+      }
+
+      .tool-btn {
+        flex: 1;
+      }
+
+      .hero {
+        padding-top: 32px;
+        padding-bottom: 38px;
+      }
+
+      .container {
+        width: min(100% - 18px, 1050px);
+        margin-top: 16px;
+      }
+
+      .categories {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <div class="brand">حلّ لي <span>مشكلتي</span></div>
+
+    <div class="toolbar">
+      <button class="tool-btn" id="languageBtn" type="button">English</button>
+      <button class="tool-btn" id="themeBtn" type="button">🌙 الوضع الليلي</button>
+      <button class="tool-btn" id="musicBtn" type="button">♫ تشغيل النغمات</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1 id="heroTitle">كل مشكلة لها بداية حلّ</h1>
+    <p id="heroText">
+      رتّب أفكارك، حدّد هدفك، وابدأ بخطوات عملية تناسب ظروفك.
+      <span class="accent">خطوة صغيرة اليوم قد تصنع فرقًا كبيرًا غدًا.</span>
+    </p>
+  </section>
+
+  <main class="container">
+    <!-- سنضيف محتوى الصفحة في الجزء الثاني -->
+    <section class="panel">
+      <h2 id="loadingTitle">أهلًا بك في مساحة الحلول</h2>
+      <p class="muted" id="loadingText">
+        استعد للبدء. سنضيف هنا اختيار المشكلة وتحديد الهدف والخطوات العملية.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer" id="footerText">
+    حلّ لي مشكلتي — أداة مساعدة لتنظيم التفكير واتخاذ الخطوة التالية.
+  </footer>
+
+  <!-- نافذة الترحيب -->
+  <div class="modal-backdrop" id="welcomeModal" role="dialog"
+       aria-modal="true" aria-labelledby="welcomeTitle">
+    <div class="modal">
+      <h2 id="welcomeTitle">أهلًا بك 👋</h2>
+      <p id="welcomeText">
+        مرحبًا بك في حلّ لي مشكلتي. خذ نفسًا هادئًا، واكتب المشكلة
+        كما تراها، وسنرتبها معًا إلى خطوات واضحة.
+      </p>
+      <p class="muted small" id="welcomeNote">
+        هذه نسخة تجريبية؛ الاقتراحات الأولية إرشادية وليست استشارة متخصصة.
+      </p>
+      <div class="actions" style="justify-content:center">
+        <button class="primary-btn" id="startBtn" type="button">
+          ابدأ الآن
+        </button>
+        <button class="secondary-btn" id="welcomeMusicBtn" type="button">
+          تشغيل نغمات هادئة
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- سنضيف وظائف الموقع في الجزء الرابع -->
+
+
+<section class="panel">
+  <h2 id="problemTitle">١. ما المشكلة التي تريد حلها؟</h2>
+  <p class="muted" id="problemHint">
+    اختر التصنيف الأقرب لمشكلتك، أو اكتب تصنيفًا خاصًا بك.
+  </p>
+
+  <div class="categories" id="categories">
+    <button class="category active" type="button" data-category="work">💼 العمل والمهنة</button>
+    <button class="category" type="button" data-category="money">💰 المال والميزانية</button>
+    <button class="category" type="button" data-category="family">👨‍👩‍👧 الأسرة والعلاقات</button>
+    <button class="category" type="button" data-category="study">📚 الدراسة والتعلم</button>
+    <button class="category" type="button" data-category="time">⏰ الوقت والأولويات</button>
+    <button class="category" type="button" data-category="business">🚀 مشروع أو فكرة</button>
+    <button class="category" type="button" data-category="tech">💻 التقنية والإنترنت</button>
+    <button class="category" type="button" data-category="decision">🧭 اتخاذ قرار</button>
+    <button class="category" type="button" data-category="personal">🌱 تطوير الذات</button>
+    <button class="category" type="button" data-category="other">✍️ مشكلة أخرى</button>
+  </div>
+
+  <div class="field" id="customCategoryField" hidden>
+    <label for="customCategory" id="customCategoryLabel">اكتب تصنيف المشكلة</label>
+    <input type="text" id="customCategory" maxlength="100"
+      placeholder="مثال: مشكلة في خدمة أو منتج">
+  </div>
+
+  <div class="field">
+    <label for="problemDescription" id="descriptionLabel">اشرح المشكلة</label>
+    <textarea id="problemDescription" maxlength="3000"
+      placeholder="ما الذي يحدث؟ وما الذي حاولت فعله حتى الآن؟"></textarea>
+  </div>
+
+  <div class="field">
+    <label for="userGoal" id="goalLabel">ما النتيجة التي تريد الوصول إليها؟</label>
+    <textarea id="userGoal" maxlength="1000"
+      placeholder="مثال: تنظيم وقتي وإنجاز أهم المهام يوميًا"></textarea>
+  </div>
+
+  <div class="field">
+    <label for="timeframe" id="timeLabel">متى تريد تحقيق النتيجة؟</label>
+    <select id="timeframe">
+      <option value="today">اليوم</option>
+      <option value="week" selected>خلال أسبوع</option>
+      <option value="month">خلال شهر</option>
+      <option value="flexible">ليس لدي موعد محدد</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="constraints" id="constraintsLabel">ما القيود أو الصعوبات التي تواجهك؟</label>
+    <textarea id="constraints" maxlength="1500"
+      placeholder="مثال: ميزانية محدودة، وقت قليل، نقص الخبرة أو الأدوات"></textarea>
+  </div>
+
+  <div class="field">
+    <label for="resources" id="resourcesLabel">ما الإمكانيات المتاحة لديك؟ (اختياري)</label>
+    <textarea id="resources" maxlength="1000"
+      placeholder="مثال: هاتف، كمبيوتر، ساعتان يوميًا، خبرة معينة"></textarea>
+  </div>
+
+  <div class="notice" id="privacyNotice">
+    نصيحة: لا تكتب كلمات المرور أو أرقام الحسابات أو البيانات الشخصية الحساسة.
+  </div>
+
+  <div class="actions">
+    <button class="primary-btn" type="button" id="solveBtn">
+      🧠 اقترح لي خطوات للحل
+    </button>
+    <button class="secondary-btn" type="button" id="clearBtn">
+      مسح الحقول
+    </button>
+  </div>
+</section>
+
+<section class="panel" id="resultsPanel" hidden>
+  <h2 id="resultsTitle">خطة العمل المقترحة</h2>
+  <p class="muted" id="resultsIntro">
+    راجع الخطوات واختر ما يناسب ظروفك.
+  </p>
+  <div id="results"></div>
+
+  <div class="actions">
+    <button class="primary-btn" type="button" id="copyBtn">نسخ الخطة</button>
+    <button class="secondary-btn" type="button" id="editBtn">تعديل المشكلة</button>
+    <button class="secondary-btn" type="button" id="retryBtn">إنشاء خطة جديدة</button>
+  </div>
+
+  <div class="field">
+    <label for="feedback" id="feedbackLabel">هل كانت الخطة مفيدة؟ وما الذي ينقصها؟</label>
+    <textarea id="feedback" maxlength="1000"
+      placeholder="اكتب ملاحظاتك لتحسين اقتراحاتك القادمة"></textarea>
+  </div>
+  <button class="secondary-btn" type="button" id="feedbackBtn">حفظ الملاحظة محليًا</button>
+  <p class="muted small" id="feedbackStatus" aria-live="polite"></p>
+</section>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = (id) => document.getElementById(id);
+
+  const categoryNames = {
+    work: "العمل والمهنة",
+    money: "المال والميزانية",
+    family: "الأسرة والعلاقات",
+    study: "الدراسة والتعلم",
+    time: "الوقت والأولويات",
+    business: "مشروع أو فكرة",
+    tech: "التقنية والإنترنت",
+    decision: "اتخاذ قرار",
+    personal: "تطوير الذات",
+    other: "مشكلة أخرى"
+  };
+
+  const categoryPlans = {
+    work: [
+      "حدّد المشكلة المهنية الأساسية والنتيجة التي تريد تحقيقها.",
+      "اكتب ثلاث خطوات عملية لتحسين وضعك، مثل تطوير مهارة أو تحديث سيرتك الذاتية أو التواصل المهني.",
+      "خصص وقتًا يوميًا لتنفيذ خطوة واحدة، ثم راجع النتيجة في نهاية الأسبوع."
+    ],
+    money: [
+      "اكتب دخلك ومصروفاتك الأساسية والتزاماتك المستحقة.",
+      "افصل الضروريات عن المصروفات التي يمكن تأجيلها أو تقليلها.",
+      "ضع ميزانية واقعية وراجعها أسبوعيًا، وتجنب الالتزامات المالية التي لا تفهم مخاطرها."
+    ],
+    family: [
+      "حدّد الموقف الذي تريد تحسينه، وافصل بين الوقائع والتوقعات.",
+      "اختر وقتًا هادئًا للحوار، واستمع للطرف الآخر دون مقاطعة.",
+      "اتفق على خطوة صغيرة وواضحة، ثم راجع أثرها. إذا كان هناك خطر أو عنف، فالأولوية للسلامة وطلب المساعدة المناسبة."
+    ],
+    study: [
+      "حدّد المادة أو المهارة التي تحتاج إلى تحسينها.",
+      "قسّمها إلى وحدات صغيرة، وحدد وقتًا ثابتًا للمذاكرة والتدريب.",
+      "اختبر فهمك بأسئلة أو تطبيق عملي، ثم ركّز على نقاط الضعف."
+    ],
+    time: [
+      "اكتب جميع المهام التي تشغل بالك.",
+      "اختر أهم ثلاث مهام بناءً على أثرها وموعدها النهائي.",
+      "ابدأ بمهمة واحدة لمدة 25 دقيقة، ثم خذ استراحة قصيرة وراجع تقدمك."
+    ],
+    business: [
+      "عرّف المشكلة التي يحلها مشروعك، ومن الشخص الذي يحتاج إلى الحل.",
+      "تحدث مع عدد صغير من العملاء المحتملين واختبر الفكرة قبل إنفاق مبلغ كبير.",
+      "أنشئ نموذجًا أوليًا بسيطًا، وحدد تكلفة التنفيذ وطريقة تحقيق الإيرادات، ثم حسّنه بناءً على الملاحظات."
+    ],
+    tech: [
+      "اكتب رسالة الخطأ أو السلوك غير المتوقع، وحدد متى بدأ.",
+      "جرّب خطوة آمنة واحدة في كل مرة، واحتفظ بنسخة احتياطية قبل أي تغيير مهم.",
+      "سجّل ما نجح وما لم ينجح، واستعن بمختص إذا كان الخلل يؤثر على بيانات مهمة أو أمان الحسابات."
+    ],
+    decision: [
+      "اكتب الخيارات المتاحة لك بوضوح.",
+      "قارن بين المزايا والتكاليف والمخاطر والنتائج المحتملة لكل خيار.",
+      "حدد ما المعلومات الناقصة، ثم اختر خطوة قابلة للتراجع عندما يكون ذلك ممكنًا."
+    ],
+    personal: [
+      "اختر عادة واحدة تريد تحسينها، واجعل الهدف محددًا وقابلًا للقياس.",
+      "ابدأ بخطوة صغيرة تستطيع تكرارها يوميًا.",
+      "تابع تقدمك أسبوعيًا، وعدّل الخطة دون أن تعتبر التعثر المؤقت فشلًا."
+    ],
+    other: [
+      "اكتب المشكلة في جملة واحدة واضحة.",
+      "حدّد الأسباب المحتملة وما تستطيع تغييره وما يقع خارج سيطرتك.",
+      "اختر تجربة صغيرة وآمنة لاختبار أحد الحلول، ثم قيّم النتيجة."
+    ]
+  };
+
+  let selectedCategory = "work";
+
+  document.querySelectorAll(".category").forEach((button) => {
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.category || "other";
+
+      document.querySelectorAll(".category").forEach((item) => {
+        item.classList.toggle("active", item === button);
+        item.setAttribute("aria-pressed", item === button ? "true" : "false");
+      });
+
+      $("customCategoryField").hidden = selectedCategory !== "other";
+    });
+  });
+
+  function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, (char) => ({
+      "&": "&amp;",
+      "<": "&lt;",
+      ">": "&gt;",
+      '"': "&quot;",
+      "'": "&#39;"
+    })[char]);
+  }
+
+  function selectedCategoryName() {
+    if (selectedCategory === "other") {
+      return $("customCategory").value.trim() || categoryNames.other;
+    }
+    return categoryNames[selectedCategory] || categoryNames.other;
+  }
+
+  function buildPlan() {
+    const problem = $("problemDescription").value.trim();
+    const goal = $("userGoal").value.trim();
+    const constraints = $("constraints").value.trim();
+    const resources = $("resources").value.trim();
+    const timeframe = $("timeframe").value;
+
+    if (!problem) {
+      $("problemDescription").focus();
+      alert("من فضلك اكتب وصف المشكلة أولًا.");
+      return;
+    }
+
+    const timeframeNames = {
+      today: "اليوم",
+      week: "خلال أسبوع",
+      month: "خلال شهر",
+      flexible: "وفق جدول مرن"
+    };
+
+    const baseSteps = categoryPlans[selectedCategory] || categoryPlans.other;
+    const steps = [...baseSteps];
+
+    if (goal) {
+      steps.unshift("الهدف المطلوب: " + goal);
+    }
+
+    if (constraints) {
+      steps.push(
+        "راعِ هذه القيود أثناء التنفيذ: " + constraints +
+        ". عدّل الخطوات لتناسب ظروفك بدلًا من تجاهل هذه القيود."
+      );
+    }
+
+    if (resources) {
+      steps.push(
+        "ابدأ بالإمكانيات المتاحة لديك: " + resources +
+        ". استخدمها لاختبار الحل بأقل تكلفة ممكنة."
+      );
+    }
+
+    const results = $("results");
+    results.replaceChildren();
+
+    const summary = document.createElement("div");
+    summary.className = "result-card";
+    summary.innerHTML =
+      "<h3>ملخص المشكلة</h3>" +
+      "<p><strong>التصنيف:</strong> " + escapeHTML(selectedCategoryName()) + "</p>" +
+      "<p><strong>وصف المشكلة:</strong> " + escapeHTML(problem) + "</p>" +
+      "<p><strong>المدة المستهدفة:</strong> " +
+      escapeHTML(timeframeNames[timeframe] || timeframeNames.week) + "</p>";
+
+    results.appendChild(summary);
+
+    steps.forEach((step, index) => {
+      const card = document.createElement("article");
+      card.className = "result-card";
+      card.innerHTML =
+        "<h3>الخطوة " + (index + 1) + "</h3>" +
+        "<p>" + escapeHTML(step) + "</p>";
+      results.appendChild(card);
+    });
+
+    const firstAction = document.createElement("div");
+    firstAction.className = "notice";
+    firstAction.innerHTML =
+      "<strong>ابدأ الآن:</strong> خصص 10 دقائق لتنفيذ أول خطوة، " +
+      "واكتب النتيجة التي وصلت إليها.";
+    results.appendChild(firstAction);
+
+    $("resultsPanel").hidden = false;
+    $("resultsTitle").textContent = "خطة العمل المقترحة";
+    $("resultsIntro").textContent =
+      "الخطة مبدئية ومبنية على معلوماتك وقواعد عامة، وليست نتيجة تحليل ذكاء اصطناعي متصل بخدمة خارجية.";
+
+    $("resultsPanel").scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  }
+
+  $("solveBtn").addEventListener("click", buildPlan);
+
+  $("clearBtn").addEventListener("click", () => {
+    ["problemDescription", "userGoal", "constraints", "resources",
+      "customCategory", "feedback"].forEach((id) => {
+      if ($(id)) $(id).value = "";
+    });
+
+    $("timeframe").value = "week";
+    $("resultsPanel").hidden = true;
+    $("feedbackStatus").textContent = "";
+
+    selectedCategory = "work";
+    document.querySelectorAll(".category").forEach((button) => {
+      const active = button.dataset.category === "work";
+      button.classList.toggle("active", active);
+      button.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+
+    $("customCategoryField").hidden = true;
+  });
+
+  $("editBtn").addEventListener("click", () => {
+    $("resultsPanel").hidden = true;
+    $("problemDescription").focus();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  $("retryBtn").addEventListener("click", buildPlan);
+
+  $("copyBtn").addEventListener("click", async () => {
+    const text = $("results").innerText;
+
+    try {
+      await navigator.clipboard.writeText(text);
+      $("copyBtn").textContent = "تم النسخ ✓";
+      setTimeout(() => {
+        $("copyBtn").textContent = "نسخ الخطة";
+      }, 1800);
+    } catch {
+      const area = document.createElement("textarea");
+      area.value = text;
+      document.body.appendChild(area);
+      area.select();
+      const copied = document.execCommand("copy");
+      area.remove();
+      alert(copied ? "تم نسخ الخطة." : "تعذر النسخ تلقائيًا؛ حدد النص وانسخه يدويًا.");
+    }
+  });
+
+  $("feedbackBtn").addEventListener("click", () => {
+    const feedback = $("feedback").value.trim();
+
+    if (!feedback) {
+      $("feedbackStatus").textContent = "اكتب ملاحظتك أولًا.";
+      return;
+    }
+
+    $("feedbackStatus").textContent =
+      "لم يتم إرسال الملاحظة إلى خادم. احتفظ بها بنسخ النص إذا أردت مشاركتها.";
+  });
+
+  // إتاحة اسم التصنيف للاستخدام في الجزء الرابع عند الحاجة.
+  window.CeliaProblemHelper = {
+    getSelectedCategory: () => selectedCategory,
+    getCategoryName: selectedCategoryName
+  };
+})();
+</script>
+
+<script>
+(() => {
+  "use strict";
+
+  const $ = (id) => document.getElementById(id);
+  const html = $("htmlTag");
+  const body = document.body;
+
+  // اللغة الافتراضية هي العربية.
+  let language = "ar";
+
+  const translations = {
+    ar: {
+      languageBtn: "English",
+      themeBtn: "🌙 الوضع الليلي",
+      themeLightBtn: "☀️ الوضع النهاري",
+      musicBtn: "♫ تشغيل النغمات",
+      stopMusicBtn: "■ إيقاف النغمات",
+      heroTitle: "كل مشكلة لها بداية حلّ",
+      heroText: "رتّب أفكارك، حدّد هدفك، وابدأ بخطوات عملية تناسب ظروفك.",
+      loadingTitle: "أهلًا بك في مساحة الحلول",
+      loadingText: "اكتب مشكلتك وحدّد هدفك، وسنساعدك على تنظيم خطواتك.",
+      footerText: "حلّ لي مشكلتي — أداة مساعدة لتنظيم التفكير واتخاذ الخطوة التالية.",
+      welcomeTitle: "أهلًا بك 👋",
+      welcomeText: "مرحبًا بك في حلّ لي مشكلتي. خذ نفسًا هادئًا، واكتب المشكلة كما تراها، وسنرتبها معًا إلى خطوات واضحة.",
+      welcomeNote: "هذه نسخة تجريبية؛ الاقتراحات الأولية إرشادية وليست استشارة متخصصة.",
+      startBtn: "ابدأ الآن",
+      welcomeMusicBtn: "تشغيل نغمات هادئة",
+      problemTitle: "١. ما المشكلة التي تريد حلها؟",
+      problemHint: "اختر التصنيف الأقرب لمشكلتك، أو اكتب تصنيفًا خاصًا بك.",
+      customCategoryLabel: "اكتب تصنيف المشكلة",
+      descriptionLabel: "اشرح المشكلة",
+      descriptionPlaceholder: "ما الذي يحدث؟ وما الذي حاولت فعله حتى الآن؟",
+      goalLabel: "ما النتيجة التي تريد الوصول إليها؟",
+      goalPlaceholder: "مثال: تنظيم وقتي وإنجاز أهم المهام يوميًا",
+      timeLabel: "متى تريد تحقيق النتيجة؟",
+      timeOptions: ["اليوم", "خلال أسبوع", "خلال شهر", "ليس لدي موعد محدد"],
+      constraintsLabel: "ما القيود أو الصعوبات التي تواجهك؟",
+      constraintsPlaceholder: "مثال: ميزانية محدودة، وقت قليل، نقص الخبرة أو الأدوات",
+      resourcesLabel: "ما الإمكانيات المتاحة لديك؟ (اختياري)",
+      resourcesPlaceholder: "مثال: هاتف، كمبيوتر، ساعتان يوميًا، خبرة معينة",
+      privacyNotice: "نصيحة: لا تكتب كلمات المرور أو أرقام الحسابات أو البيانات الشخصية الحساسة.",
+      solveBtn: "🧠 اقترح لي خطوات للحل",
+      clearBtn: "مسح الحقول",
+      resultsTitle: "خطة العمل المقترحة",
+      resultsIntro: "راجع الخطوات واختر ما يناسب ظروفك.",
+      copyBtn: "نسخ الخطة",
+      copiedBtn: "تم النسخ ✓",
+      editBtn: "تعديل المشكلة",
+      retryBtn: "إنشاء خطة جديدة",
+      feedbackLabel: "هل كانت الخطة مفيدة؟ وما الذي ينقصها؟",
+      feedbackPlaceholder: "اكتب ملاحظاتك لتحسين اقتراحاتك القادمة",
+      feedbackBtn: "حفظ الملاحظة محليًا",
+      feedbackEmpty: "اكتب ملاحظتك أولًا.",
+      feedbackSaved: "لم يتم إرسال الملاحظة إلى خادم. يمكنك نسخها للاحتفاظ بها.",
+      problemRequired: "من فضلك اكتب وصف المشكلة أولًا.",
+      categoryNames: {
+        work: "💼 العمل والمهنة",
+        money: "💰 المال والميزانية",
+        family: "👨‍👩‍👧 الأسرة والعلاقات",
+        study: "📚 الدراسة والتعلم",
+        time: "⏰ الوقت والأولويات",
+        business: "🚀 مشروع أو فكرة",
+        tech: "💻 التقنية والإنترنت",
+        decision: "🧭 اتخاذ قرار",
+        personal: "🌱 تطوير الذات",
+        other: "✍️ مشكلة أخرى"
+      },
+      customCategoryPlaceholder: "مثال: مشكلة في خدمة أو منتج",
+      volumeLabel: "مستوى الصوت",
+      volumeTitle: "التحكم في مستوى النغمات"
+    },
+    en: {
+      languageBtn: "العربية",
+      themeBtn: "🌙 Dark mode",
+      themeLightBtn: "☀️ Light mode",
+      musicBtn: "♫ Play calming tones",
+      stopMusicBtn: "■ Stop tones",
+      heroTitle: "Every problem has a starting point",
+      heroText: "Organize your thoughts, define your goal, and take practical steps.",
+      loadingTitle: "Welcome to your problem-solving space",
+      loadingText: "Describe your problem and goal to organize your next steps.",
+      footerText: "Help Me Solve My Problem — a tool for clearer thinking and practical next steps.",
+      welcomeTitle: "Welcome 👋",
+      welcomeText: "Welcome! Take a calm breath, describe the problem as you see it, and organize it into clear steps.",
+      welcomeNote: "This is a demo. Initial suggestions are general guidance, not professional advice.",
+      startBtn: "Get started",
+      welcomeMusicBtn: "Play calming tones",
+      problemTitle: "1. What problem would you like to solve?",
+      problemHint: "Choose a category or enter your own.",
+      customCategoryLabel: "Enter a custom category",
+      descriptionLabel: "Describe the problem",
+      descriptionPlaceholder: "What is happening, and what have you tried so far?",
+      goalLabel: "What outcome do you want?",
+      goalPlaceholder: "Example: Organize my time and finish key tasks daily",
+      timeLabel: "When do you want to reach the outcome?",
+      timeOptions: ["Today", "Within a week", "Within a month", "No fixed deadline"],
+      constraintsLabel: "What constraints or difficulties do you face?",
+      constraintsPlaceholder: "Example: Limited budget, little time, or lack of experience",
+      resourcesLabel: "What resources are available? (Optional)",
+      resourcesPlaceholder: "Example: Phone, computer, two hours daily, specific skills",
+      privacyNotice: "Tip: Do not enter passwords, account numbers, or sensitive personal data.",
+      solveBtn: "🧠 Suggest solution steps",
+      clearBtn: "Clear fields",
+      resultsTitle: "Suggested action plan",
+      resultsIntro: "Review the steps and choose what fits your situation.",
+      copyBtn: "Copy plan",
+      copiedBtn: "Copied ✓",
+      editBtn: "Edit problem",
+      retryBtn: "Generate another plan",
+      feedbackLabel: "Was this plan helpful? What is missing?",
+      feedbackPlaceholder: "Share feedback to improve your next suggestions",
+      feedbackBtn: "Keep feedback locally",
+      feedbackEmpty: "Please enter feedback first.",
+      feedbackSaved: "Your feedback was not sent to a server. Copy it if you want to keep it.",
+      problemRequired: "Please describe the problem first.",
+      categoryNames: {
+        work: "💼 Work and career",
+        money: "💰 Money and budgeting",
+        family: "👨‍👩‍👧 Family and relationships",
+        study: "📚 Study and learning",
+        time: "⏰ Time and priorities",
+        business: "🚀 Business or idea",
+        tech: "💻 Technology and internet",
+        decision: "🧭 Decision-making",
+        personal: "🌱 Personal development",
+        other: "✍️ Other problem"
+      },
+      customCategoryPlaceholder: "Example: A problem with a service or product",
+      volumeLabel: "Volume",
+      volumeTitle: "Control the tone volume"
+    }
+  };
+
+  // واجهة الترجمة مع الحفاظ على اختيار المستخدم.
+  function setText(id, value) {
+    const element = $(id);
+    if (element) element.textContent = value;
+  }
+
+  function setPlaceholder(id, value) {
+    const element = $(id);
+    if (element) element.placeholder = value;
+  }
+
+  function applyLanguage() {
+    const t = translations[language];
+    const isArabic = language === "ar";
+
+    html.lang = language;
+    html.dir = isArabic ? "rtl" : "ltr";
+    document.title = isArabic
+      ? "حلّ لي مشكلتي | Help Me Solve My Problem"
+      : "Help Me Solve My Problem";
+
+    [
+      "languageBtn", "heroTitle", "loadingTitle", "loadingText",
+      "footerText", "welcomeTitle", "welcomeText", "welcomeNote",
+      "startBtn", "welcomeMusicBtn", "problemTitle", "problemHint",
+      "customCategoryLabel", "descriptionLabel", "goalLabel",
+      "timeLabel", "constraintsLabel", "resourcesLabel",
+      "privacyNotice", "solveBtn", "clearBtn", "resultsTitle",
+      "resultsIntro", "copyBtn", "editBtn", "retryBtn",
+      "feedbackLabel", "feedbackBtn"
+    ].forEach((id) => {
+      if (t[id] !== undefined) setText(id, t[id]);
+    });
+
+    $("heroText").textContent = t.heroText;
+    setPlaceholder("problemDescription", t.descriptionPlaceholder);
+    setPlaceholder("userGoal", t.goalPlaceholder);
+    setPlaceholder("constraints", t.constraintsPlaceholder);
+    setPlaceholder("resources", t.resourcesPlaceholder);
+    setPlaceholder("feedback", t.feedbackPlaceholder);
+    setPlaceholder("customCategory", t.customCategoryPlaceholder);
+
+    document.querySelectorAll(".category").forEach((button) => {
+      const key = button.dataset.category;
+      if (t.categoryNames[key]) button.textContent = t.categoryNames[key];
+    });
+
+    const timeSelect = $("timeframe");
+    const selectedValue = timeSelect.value;
+    const optionValues = ["today", "week", "month", "flexible"];
+
+    timeSelect.innerHTML = "";
+    optionValues.forEach((value, index) => {
+      const option = document.createElement("option");
+      option.value = value;
+      option.textContent = t.timeOptions[index];
+      timeSelect.appendChild(option);
+    });
+    timeSelect.value = selectedValue || "week";
+
+    $("languageBtn").textContent = t.languageBtn;
+    $("themeBtn").textContent = body.classList.contains("dark")
+      ? t.themeLightBtn
+      : t.themeBtn;
+    updateMusicButton();
+
+    // إعادة عرض خطة النتائج باللغة المختارة تحتاج إلى إعادة إنشائها.
+    // لا نحذف البيانات المدخلة عند تغيير اللغة.
+  }
+
+  $("languageBtn").addEventListener("click", () => {
+    language = language === "ar" ? "en" : "ar";
+    applyLanguage();
+  });
+
+  // الوضع الليلي.
+  $("themeBtn").addEventListener("click", () => {
+    body.classList.toggle("dark");
+    applyLanguage();
+  });
+
+  // إظهار نافذة الترحيب مرة عند كل فتح للصفحة.
+  const welcomeModal = $("welcomeModal");
+  $("startBtn").addEventListener("click", () => {
+    welcomeModal.hidden = true;
+  });
+
+  // موسيقى مولدة محليًا: نغمات أصلية هادئة وليست تسجيلًا تجاريًا.
+  let audioContext = null;
+  let masterGain = null;
+  let melodyTimer = null;
+  let noteIndex = 0;
+  let isPlaying = false;
+  let activeOscillators = [];
+
+  const melody = [
+    261.63, 329.63, 392.00, 329.63,
+    293.66, 349.23, 440.00, 349.23,
+    261.63, 329.63, 392.00, 523.25
+  ];
+
+  function updateMusicButton() {
+    const t = translations[language];
+    $("musicBtn").textContent = isPlaying ? t.stopMusicBtn : t.musicBtn;
+    $("welcomeMusicBtn").textContent = isPlaying
+      ? t.stopMusicBtn
+      : t.welcomeMusicBtn;
+  }
+
+  function playNote(frequency) {
+    if (!audioContext || !masterGain || !isPlaying) return;
+
+    const oscillator = audioContext.createOscillator();
+    const envelope = audioContext.createGain();
+
+    oscillator.type = "sine";
+    oscillator.frequency.value = frequency;
+
+    const now = audioContext.currentTime;
+    envelope.gain.setValueAtTime(0.0001, now);
+    envelope.gain.exponentialRampToValueAtTime(0.25, now + 0.12);
+    envelope.gain.exponentialRampToValueAtTime(0.0001, now + 1.35);
+
+    oscillator.connect(envelope);
+    envelope.connect(masterGain);
+    oscillator.start(now);
+    oscillator.stop(now + 1.4);
+
+    activeOscillators.push(oscillator);
+    oscillator.onended = () => {
+      activeOscillators = activeOscillators.filter((item) => item !== oscillator);
+      try {
+        oscillator.disconnect();
+        envelope.disconnect();
+      } catch (_) {}
+    };
+  }
+
+  async function startMusic() {
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+
+      if (!AudioContextClass) {
+        alert(language === "ar"
+          ? "متصفحك لا يدعم تشغيل النغمات الصوتية."
+          : "Your browser does not support generated audio.");
+        return;
+      }
+
+      if (!audioContext) {
+        audioContext = new AudioContextClass();
+        masterGain = audioContext.createGain();
+        masterGain.gain.value = Number($("musicVolume").value);
+        masterGain.connect(audioContext.destination);
+      }
+
+      await audioContext.resume();
+
+      if (isPlaying) return;
+
+      isPlaying = true;
+      updateMusicButton();
+
+      const playNext = () => {
+        if (!isPlaying) return;
+        playNote(melody[noteIndex % melody.length]);
+        noteIndex++;
+      };
+
+      playNext();
+      melodyTimer = window.setInterval(playNext, 1500);
+    } catch (error) {
+      console.error("Audio could not start:", error);
+      alert(language === "ar"
+        ? "تعذر تشغيل الصوت. جرّب الضغط على زر التشغيل مرة أخرى."
+        : "Audio could not start. Please try again.");
+    }
+  }
+
+  function stopMusic() {
+    isPlaying = false;
+
+    if (melodyTimer !== null) {
+      clearInterval(melodyTimer);
+      melodyTimer = null;
+    }
+
+    activeOscillators.forEach((oscillator) => {
+      try { oscillator.stop(); } catch (_) {}
+    });
+    activeOscillators = [];
+    updateMusicButton();
+  }
+
+  $("musicBtn").addEventListener("click", () => {
+    if (isPlaying) stopMusic();
+    else startMusic();
+  });
+
+  $("welcomeMusicBtn").addEventListener("click", () => {
+    if (isPlaying) stopMusic();
+    else startMusic();
+  });
+
+  // إضافة عنصر مستوى الصوت للواجهة.
+  const musicPanel = document.createElement("div");
+  musicPanel.className = "panel";
+  musicPanel.style.margin = "0 auto 20px";
+  musicPanel.style.width = "min(100% - 28px, 1050px)";
+  musicPanel.innerHTML =
+    '<label id="volumeLabel" for="musicVolume">' +
+    translations.ar.volumeLabel +
+    '</label>' +
+    '<div class="volume-control">' +
+    '<span aria-hidden="true">🔈</span>' +
+    '<input id="musicVolume" type="range" min="0" max="0.12" ' +
+    'step="0.005" value="0.035" aria-label="Music volume">' +
+    '<span aria-hidden="true">🔊</span>' +
+    '</div>' +
+    '<p class="muted small" id="musicDescription">' +
+    'نغمات إلكترونية أصلية مولدة داخل المتصفح، وليست موسيقى فيلم أو تسجيل فنان.' +
+    '</p>';
+
+  const footer = document.querySelector(".footer");
+  footer.parentNode.insertBefore(musicPanel, footer);
+
+  $("musicVolume").addEventListener("input", () => {
+    if (masterGain && audioContext) {
+      masterGain.gain.setTargetAtTime(
+        Number($("musicVolume").value),
+        audioContext.currentTime,
+        0.04
+      );
+    }
+  });
+
+  // تحديث ترجمة وصف الصوت والتحكم فيه.
+  const originalApplyLanguage = applyLanguage;
+  applyLanguage = function () {
+    originalApplyLanguage();
+    setText("volumeLabel", translations[language].volumeLabel);
+    setText(
+      "musicDescription",
+      language === "ar"
+        ? "نغمات إلكترونية أصلية مولدة داخل المتصفح، وليست موسيقى فيلم أو تسجيل فنان."
+        : "Original ambient tones generated in your browser, not a movie soundtrack or artist recording."
+    );
+  };
+
+  // تفعيل الترجمة بعد إعداد كل عناصر الواجهة.
+  applyLanguage();
+
+  // إيقاف النغمات عند مغادرة الصفحة.
+  window.addEventListener("pagehide", stopMusic);
+
+})();
+</script>
+</body>
+</html>
